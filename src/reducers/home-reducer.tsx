@@ -1,5 +1,7 @@
 
 
 export type HomeState = {
-    invites = 
+    invites: []
+    potlukks: []
+    notifs: []
 }
