@@ -11,7 +11,38 @@ import { NavBar } from "../navigation/navbar";
 
 export function HomePage(){
     return<>
-    {/* <NavBar></NavBar> */}
     <h1>HomePage</h1>
+    <section>
+        <div>
+            <table>
+                <thead>
+                    <tr><th colSpan={2}>Pending Potlukk Invitations</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Angel's Potlukk</td><td><button>View Invite</button></td></tr>
+                    <tr><td>Sammy's Potlukk</td><td><button>View Invite</button></td></tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr><th colSpan={2}>I'm Going!</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Andy's Potlukk</td><td><button>Details</button></td></tr>
+                    <tr><td>Trevor's Potlukk</td><td><button>Details</button></td></tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr><th colSpan={2}>Notifications</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>New dish added</td><td>Trevor's Potlukk</td></tr>
+                    <tr><td>Rescheduled</td><td>Andy's Potklukk</td></tr>
+                    <tr><td>You're Invited!</td><td>Revature Potlukk</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
     </>
 }
