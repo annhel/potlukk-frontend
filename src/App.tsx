@@ -6,6 +6,22 @@ import { PotlukkDetailsHostPage } from './pages/potlukk-details-host';
 import { RegistrationPage } from './pages/registration-page';
 import { SignInPage } from './pages/sign-in-page';
 
+    // export type Dish = {
+    //     name: string
+    //     description: string
+    //     broughtBy: number //userId
+    //     serves: number
+    //     allergens: []
+    // }
+    
+    // export type PotlukkCreationForm = {
+    //     time: number
+    //     location: string
+    //     desc:string
+    //     isPublic: boolean
+    //     dishes: Dish[]
+    //     attendees: Attendee[]
+    // }
 
 function App() {
   return (<>
