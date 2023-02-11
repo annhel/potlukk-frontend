@@ -8,17 +8,8 @@ import { NavBar } from "../navigation/navbar";
     // Use Redux (Thunks too, but i think he means Sagas)
     // a navbar that uses react-router -> to all other pages
     // a Logout button -> clears local storage and redirects to Signin Page
-    export type LukkerUserInfo={
-        userId: number
-        username:string 
-        fname: string
-        lname: string
-        allergens: []
-    }
 
-    export type HomeState={
-        invites: Invitation[]
-    }
+// will use, useEffect to grab the user specific info from graphql
     
 
 export function HomePage(){
