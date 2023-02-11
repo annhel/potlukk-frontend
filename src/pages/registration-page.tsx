@@ -7,6 +7,7 @@
 
 // This is a simple RegisterForm, i think usereducer is overkill? maybe just useState
 
+
 export function RegistrationPage(){
     return<>
     <h1>Register</h1>
