@@ -1,6 +1,6 @@
 import { NumberLiteralType } from "typescript"
 import { NavBar } from "../navigation/navbar"
-import { LukkerUserInfo, HomeState } from "./home-page"
+// import { LukkerUserInfo, HomeState } from "./home-page"
 // Key Functionality:
 //  Three-ish Main Components:
 //      1) Potlukk Name, Location, and Time

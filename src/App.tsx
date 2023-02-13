@@ -19,7 +19,7 @@ function App() {
 
     <Route path='/' element={<SignInPage/>}/>
     <Route path='/home' element={<HomePage/>}/>
-    <Route path='/registration' element={<RegistrationPage/>}/>
+    <Route path='/register' element={<RegistrationPage/>}/>
     <Route path='/potlukkinfohost/:potlukkID' element={<PotlukkDetailsHostPage/>}/>
     <Route path='/potlukkinfoguest/:potlukkID' element={<PotlukkDetailsHostPage/>}/>
 
