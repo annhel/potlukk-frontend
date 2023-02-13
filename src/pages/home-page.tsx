@@ -11,6 +11,11 @@ import { NavBar } from "../navigation/navbar";
 
 // will use, useEffect to grab the user specific info from graphql
     
+export type HomeState = {
+    invites: []
+    attending: []
+    notifs: []
+}
 
 export function HomePage(){
     return<>

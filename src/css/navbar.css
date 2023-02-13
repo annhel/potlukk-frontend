@@ -3,3 +3,19 @@ img{
     height: 40px;
     width: 40px;
 }
+
+button{
+    border-radius: 8px;
+    border-color: transparent;
+    background-color: rgb(167, 188, 228);
+    font-weight: bold;
+    color: white;
+}
+
+.appName{
+    color: white;
+    padding: 10px;
+    background-color: #2C345C;
+    border-radius: 15px;
+    text-align: center;
+}

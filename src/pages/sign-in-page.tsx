@@ -6,8 +6,11 @@
 //  this requires an http request --> to api for sign-in i believe
 //  route to registration page
 
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { FormEvent, useState } from "react"
+import { Link, Route, useNavigate } from "react-router-dom"
+import { ErrorMsg, loginRequest, VerifyLogin } from "../api/sign-in-register-requests"
+import { HomePage } from "./home-page"
+import "../css/signin-register.css"
 
 type existingUserForm = {
     username: string
@@ -15,34 +18,43 @@ type existingUserForm = {
     userId: number
 }
 
-
 export function SignInPage(){
+    const navigate = useNavigate();
 
     // useState to get user log-in details
     const [form,setForm] = useState<existingUserForm>({username:"",password:"", userId:0})
 
     //set the login info in local storage
     localStorage.setItem("username", form.username);
-    localStorage.setItem("password", form.password);
-    //if statement to set userId in local storage if found amongst lukkers
-    // async function handleSignIn(){
-    //     for(let lukker of allLukkers){
-    //         // maybe use .find
-    //         if(lukker.username === form.username){
-    //             form.userId === lukker.userId
-    //         }
-    //     }
-    // }
+
+    async function handleSignIn(event: FormEvent<HTMLFormElement>){
+        event.preventDefault();
+        const loginForm: loginRequest={
+            username: form.username,
+            password: form.password
+        }
+        let response = await VerifyLogin(loginForm);
+
+        localStorage.setItem("userId", response.userId.toString());
+
+        navigate("/home");
+    }
 
     return<>
-    <h1>Potlukkin'</h1>
-    <h2>Sign-In</h2>
-    <form onSubmit={handleSignIn}>
+    {/* <h1>Potlukkin'</h1> */}
+    <section>
+    <h2 className="signIn">Sign-In</h2>
+    <form onSubmit={(e:FormEvent<HTMLFormElement>) => handleSignIn(e)}>
         <input type="text" placeholder="Username" onChange={e=> setForm({...form, username:e.target.value})}/>
         <input type="password" placeholder="Password" onChange={e=> setForm({...form, password:e.target.value})}/>
-        <button type="submit" onClick={verify}>Sign-in</button>
+        <button type="submit" >Sign-in</button>
     </form>
-    <p>--------------------------</p> 
-    <button>Register <Link to="/register"></Link></button>
+    </section>
+    <hr />
+    <section>
+        <Link to="/register">
+        <button>Register</button>
+        </Link>
+    </section>
     </>
 }

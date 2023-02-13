@@ -1,0 +1,29 @@
+
+h1 {
+    font-size: x-large;
+    color: white;
+    background: rgb(167, 188, 228);
+    text-align: center;
+}
+
+.signin{
+    text-align: center;
+    color: #2C345C ;
+}
+
+section{
+    max-width:550px;
+    text-align: center;
+    padding-block: 2rem;
+    margin: auto;
+}
+table{
+    color: #2C345C;
+    border-top: #2C345C;
+    background-color: rgb(213, 221, 236);
+}
+
+div{
+
+}
+
