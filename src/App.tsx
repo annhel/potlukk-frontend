@@ -12,16 +12,16 @@ const queryClient = new QueryClient();
 function App() {
   return (<>
   <BrowserRouter>
-    <NavBar></NavBar>
+  <NavBar></NavBar>
   <QueryClientProvider client={queryClient}>
 
   <Routes>
 
     <Route path='/' element={<SignInPage/>}/>
-    <Route path='/home' element={<HomePage/>}/>
     <Route path='/register' element={<RegistrationPage/>}/>
-    <Route path='/potlukkinfohost/:potlukkID' element={<PotlukkDetailsHostPage/>}/>
-    <Route path='/potlukkinfoguest/:potlukkID' element={<PotlukkDetailsHostPage/>}/>
+    <Route path='/home' element={<HomePage/>}/>
+    <Route path='/potlukkinfohost/:lukkId' element={<PotlukkDetailsHostPage/>}/>
+    <Route path='/potlukkinfoguest/:lukkId' element={<PotlukkDetailsHostPage/>}/>
 
   </Routes>
   
