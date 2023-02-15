@@ -17,10 +17,12 @@ export function HomePage(){
     const navigate = useNavigate();
 
     function handleDetailsHost(potlukkId: number){
+        localStorage.setItem("hostPotlukkId", potlukkId.toString())
         navigate("/potlukkinfohost/" + potlukkId)
     }
 
     function handleDetailsGuest(potlukkId: number){
+        localStorage.setItem("guestPotlukkId", potlukkId.toString())
         navigate("/potlukkinfoguest/" + potlukkId)
     }
 
