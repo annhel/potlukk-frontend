@@ -6,6 +6,7 @@ import { PotlukkDetailsHostPage } from './pages/potlukk-details-host';
 import { RegistrationPage } from './pages/registration-page';
 import { SignInPage } from './pages/sign-in-page';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
+import { HostPotlukk } from './pages/host-potlukk-page';
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,8 @@ function App() {
     <Route path='/home' element={<HomePage/>}/>
     <Route path='/potlukkinfohost/:potlukkId' element={<PotlukkDetailsHostPage/>}/>
     <Route path='/potlukkinfoguest/:potlukkId' element={<PotlukkDetailsHostPage/>}/>
-
+    <Route path='/potlukkregistration' element={<HostPotlukk/>}/>
+    
   </Routes>
   
   </QueryClientProvider>
