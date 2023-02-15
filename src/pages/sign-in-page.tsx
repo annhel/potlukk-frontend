@@ -41,7 +41,7 @@ export function SignInPage(){
     }
 
     return<>
-    {/* <h1>Potlukkin'</h1> */}
+    <h1>Potlukkin'</h1>
     <section>
     <h2 className="signIn">Sign-In</h2>
     <form onSubmit={(e:FormEvent<HTMLFormElement>) => handleSignIn(e)}>

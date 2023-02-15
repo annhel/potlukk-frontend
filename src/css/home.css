@@ -1,0 +1,25 @@
+.homeSection{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.homeTable{
+    color: #2C345C;
+    border-top: #2C345C;
+    background-color: rgb(213, 221, 236);
+    border: 5px solid rgb(147, 153, 184);
+   
+    
+}
+
+.homeThead{
+    font-size: 23px;
+    background-color: rgb(213, 221, 236);
+}
+
+.homeTbody{
+    font-size: 19px;
+    background-color: rgb(255, 255, 255);
+}
+

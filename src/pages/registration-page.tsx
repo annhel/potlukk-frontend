@@ -95,7 +95,7 @@ export function RegistrationPage(){
         <input type="text" placeholder="Confirm Password" onChange={e=> confirmPassword = e.target.value}/>
     </section>
     <div>
-    <table>
+    <table className="regTable">
             <thead>
                 <tr><th>Allergens</th></tr>
             </thead>
