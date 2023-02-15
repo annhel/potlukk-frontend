@@ -1,0 +1,50 @@
+.guestDetails{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-evenly;
+    max-width: 1500px;
+    background-color: #eff3fc;
+    border: transparent;
+}
+
+.potlukkdetails{
+    text-align: left;
+}
+
+.display-table{
+    color: #2C345C;
+    border-top: #2C345C;
+    background-color: rgb(213, 221, 236);
+    border: 5px solid rgb(147, 153, 184);
+}
+
+.display-thead{
+    font-size: 23px;
+    background-color: rgb(213, 221, 236);
+}
+
+.display-tbody{
+    font-size: 19px;
+    background-color: rgb(255, 255, 255);
+}
+.display-span{
+    padding-top: 5%;
+}
+
+.adm-buttons{
+    text-align: center;
+    justify-content: space-evenly;
+}
+.abutton, .dbutton, .mbutton{
+    padding: 10px;
+
+}
+
+.divider{
+    width:5px;
+    height:25px;
+    display:inline-block;
+}
+
+
