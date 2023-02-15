@@ -12,12 +12,11 @@ export function NavBar(){
         navigate(`/home`);
     }
     function handleHost(){
-        let lukkId = localStorage.userId;
-        navigate(`/potlukkinfohost/${lukkId}`);
+        navigate(`/potlukkregistration`);
     }
-    function handleViewPotlukks(){
-        let lukkId = localStorage.userId;
-        navigate(`/potlukkinfoguest/${lukkId}`);
+    function handleViewPotlukks(){ 
+        let potlukkId = localStorage.userId;
+        navigate(`/potlukkinfoguest/${potlukkId}`);
     }
 
     return<>
