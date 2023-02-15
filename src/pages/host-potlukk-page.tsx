@@ -11,81 +11,34 @@
 //  user React Query for fetching and caching the info (caching the potlukk created in "database" and fetching list of usernames i think)
 //  you can still use navbar from the screen before finishing creating your potlukk, something extra: a pop-up that says details will be unsaved, continue? [Yes][No]
 
+import { useReducer } from "react"
+import { PotlukkDetailsForm } from "../api/types"
+import { createPotlukkReducer } from "../reducers/potlukk-creation-reducer"
+import { potlukkCreated } from "../api/potlukk-creation"
 
-import { PotlukkDetailsForm, PotlukkCreationInput, PotlukkStatus} from "../api/types"
-
-// Creating Actions for PotlukkDetailsForm, PotlukkCreationInput, and Potlukk Status
-export type SetPotlukkTitle = {type: "SET_EVENT_NAME", payload: string}; //action for potlukk name
-export type SetEventTime = {type: "SET_TIME", payload: number}; //action for time of potlukk event
-export type SetEventLocation = {type: "SET_LOCATION", payload: string}; //action for location of potlukk event
-export type SetEventTags = {type: "SET_TAGS", payload: string[]}; //action to for tags of potlukk event
-export type SetPotlukkPublic = {type: "SET_PUBLIC", payload: false}; //action to check if event is public
-export type SetEventDesc = {type: "SET_DESCRIPTION", payload: string}; //action for event description
-export type AddEvent =  {type: "ADD_EVENT"}; //action to create event, insert host ID, and change status to SCHEDULED
-export type EventTrackerAction = SetPotlukkTitle | SetEventTime | SetEventLocation | SetEventTags | SetPotlukkPublic | SetEventDesc | AddEvent;
-
-
-export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTrackerAction): PotlukkDetailsForm {
-
-    const newState: PotlukkDetailsForm = JSON.parse(JSON.stringify(state)); //created clone of PotlukkDetailsForm
-    
-    switch(action.type){
-
-        case "SET_EVENT_NAME": {
-            newState.title = action.payload; 
-            return newState;
-        }
-
-        case "SET_TIME": {
-            newState.time = action.payload;
-            return newState;
-        }
-
-        case "SET_LOCATION": {
-            newState.location = action.payload;
-            return newState;
-        }
-
-        case "SET_TAGS": {
-            newState.tags = action.payload;
-            return newState;
-        }
-
-        case "SET_DESCRIPTION": {
-            newState.description = action.payload;
-            return newState;
-        }
-
-        case "SET_PUBLIC": {
-            const clickHandler = () => {newState.isPublic = true};
-
-            if(newState.isPublic = false) {
-                return newState;
-            } 
-            clickHandler();
-            return newState
-        }
-    }
-
-    
+//Creating a state variable holding "empty" initial data using PotlukkDetailsForm type
+const creationState: PotlukkDetailsForm = {
+    title: "",
+    location: "",
+    description: "",
+    isPublic: false,
+    time: 0,
+    tags: [],
+    status: ""
 }
-/*export function HostPotlukk(){
 
-    const [form, setForm] = useState<PotlukkDetailsForm>({title: "", location: "", status: "", description: "", isPublic: false, time: 0, tags: []});
+//Creating function to grab values from input fields of potlukk creation
+export function HostPotlukk(){
+    
+    
+    const [creationTracker, dispatch] = useReducer(createPotlukkReducer, creationState);
 
-    async function submitPotlukk() {
-        const potlukk = await CreatePotlukk({
-            title: form.title, 
-            location: form.location,
-            status: form.status,
-            description: form.description,
-            isPublic: form.isPublic,
-            time: form.time, 
-            tags: form.tags
-        });
+    async function makePotlukk(){
+        const createdPotlukk = await potlukkCreated({hostId:Number(localStorage.getItem("userId")), details:creationTracker});
+        console.log(createdPotlukk);
 
-        const potlukks = 
     }
+
 
     return<>
     <h1>Host a Potlukk: </h1>
@@ -95,23 +48,21 @@ export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTra
     </div>
 
     <div id="createEvent">
-        <input type="text" placeholder="Event Title"/>
+        <input type="text" placeholder="Event Title" onChange={c=>dispatch({type:"SET_EVENT_NAME", payload: c.target.value})}/>
         <br />
-        <input type="text" placeholder="Time"/>
+        <input type="number" placeholder="Time" onChange={c=>dispatch({type:"SET_TIME", payload: Number(Date.parse(c.target.value))})}/>
         <br />
-        <input type="text" placeholder="Date"/>
+        <input type="text" placeholder="Location" onChange={c=>dispatch({type: "SET_LOCATION", payload: c.target.value})}/>
         <br />
-        <input type="text" placeholder="Location"/>
+        <input type="text" placeholder="Description" onChange={c=>dispatch({type: "SET_DESCRIPTION", payload: c.target.value})}/>
         <br />
-        <input type="text" placeholder="Description"/>
+        <input type="text" placeholder="Create Tag" onChange={c=>dispatch({type: "SET_TAGS", payload: [c.target.value]})}/>
         <br />
-        <input type="text" placeholder="Create Tag"/>
-        <br />
-        <input type="checkbox" id="status"/>
+        <input type="checkbox" id="status" onChange={c=>dispatch({type: "TOGGLE_PUBLIC"})}/>
         <label htmlFor="public">Make Public</label>
     </div>
     <br />
-    <button>Create Event</button>
+    <button onClick={makePotlukk}>Create Event</button>
     </>
-} */
+} 
 

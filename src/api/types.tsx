@@ -68,7 +68,7 @@ export type Potlukk = {
   }
   
 export type PotlukkCreationInput = {
-    details: PotlukkDetailsForm
+    details: PotlukkDetailsForm 
     hostId: number
   }
   
