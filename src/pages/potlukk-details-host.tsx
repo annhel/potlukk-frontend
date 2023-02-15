@@ -13,12 +13,15 @@
 //      [Request Dish] -> creates a dish that can be broughtBy someone -- check out api, this is a property that can be used   
 //      [Invite] -> can send more invites, can reuse the invite table from other component for this
 
+import { NavBar } from "../navigation/navbar";
+
 // State Management: use Redux for this, Saga used for middle ware updates
 //                          use it to update the dishes, and attendee info as the state changes
 
 export function PotlukkDetailsHostPage(){
 
     return<>
+    <NavBar></NavBar>
     <h1>Potlukk Details: Host</h1>
     </>
 }

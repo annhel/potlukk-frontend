@@ -17,7 +17,7 @@ section{
     padding-block: 2rem;
     margin: auto;
 }
-table{
+.regTable{
     color: #2C345C;
     border-top: #2C345C;
     background-color: rgb(213, 221, 236);

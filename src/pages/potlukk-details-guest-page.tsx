@@ -16,6 +16,7 @@ import { NavBar } from "../navigation/navbar"
 export function PotlukkDetailsGuest(){
 
     return<>
+    <NavBar></NavBar>
     <h1>Potlukk Details: Guest</h1>
 
     <div id="potlukk-name">
