@@ -8,33 +8,37 @@ import { SignInPage } from './pages/sign-in-page';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import { HostPotlukk } from './pages/host-potlukk-page';
 import { PotlukkDetailsGuestPage } from './pages/potlukk-details-guest-page';
+import { guestPageReducer } from './reducers/guest-page-reducer';
+import { applyMiddleware, createStore } from 'redux';
+import { Provider } from 'react-redux/es/exports';
 
 const queryClient = new QueryClient();
 
 //create saga middleware
 const sagaMiddleware = createSagaMiddleware();
 // Create a store to use the REDUX reducer, and apply saga middleware
-// const store = createStore(createPotlukkReducer, applyMiddleware(sagaMiddleware))
+const store = createStore(guestPageReducer, applyMiddleware(sagaMiddleware))
 // run saga middleware
 // sagaMiddleware.run(rootSaga)
 
 
 function App() {
   return (<>
+  
   <BrowserRouter>
   <QueryClientProvider client={queryClient}>
-
+  <Provider store = {store}>
   <Routes>
 
     <Route path='/' element={<SignInPage/>}/>
     <Route path='/register' element={<RegistrationPage/>}/>
     <Route path='/home' element={<HomePage/>}/>
     <Route path='/potlukkinfohost/:potlukkId' element={<PotlukkDetailsHostPage/>}/>
-    {/* <Route path='/potlukkinfoguest/:potlukkId' element={<PotlukkDetailsGuestPage/>}/> */}
+    <Route path='/potlukkinfoguest/:potlukkId' element={<PotlukkDetailsGuestPage/>}/>
     <Route path='/potlukkregistration' element={<HostPotlukk/>}/>
 
   </Routes>
-  
+  </Provider>
   </QueryClientProvider>
   </BrowserRouter>
   
@@ -45,11 +49,11 @@ function App() {
 
 export default App;
 
-function createStore(todoReducer: any, arg1: any) {
-  throw new Error('Function not implemented.');
-}
+// function createStore(todoReducer: any, arg1: any) {
+//   throw new Error('Function not implemented.');
+// }
 
-function applyMiddleware(sagaMiddleware: SagaMiddleware<object>): any {
-  throw new Error('Function not implemented.');
-}
+// function applyMiddleware(sagaMiddleware: SagaMiddleware<object>): any {
+//   throw new Error('Function not implemented.');
+// }
 
