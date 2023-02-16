@@ -39,4 +39,5 @@ export function PotlukkDetailsHostPage(){
     <button>Edit</button>
     <button>Cancel</button>
     </>
-}
+} 
+
