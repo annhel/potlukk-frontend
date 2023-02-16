@@ -21,7 +21,6 @@ export function InviteGuests(){
         navigate("/home")
     }
 
-
     return<>
     <h1>Potlukk Title Here</h1>
     <h2>Invite some friends!</h2>
