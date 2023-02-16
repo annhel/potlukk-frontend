@@ -1,22 +1,25 @@
 import React from 'react';
+import { configureStore, applyMiddleware, combineReducers } from '@reduxjs/toolkit';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { HomePage } from './pages/home-page';
-//import { PotlukkDetailsHostPage } from './pages/potlukk-details-host';
+import { PotlukkDetailsHostPage } from './pages/potlukk-details-host';
 import { RegistrationPage } from './pages/registration-page';
 import { SignInPage } from './pages/sign-in-page';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import { HostPotlukk } from './pages/host-potlukk-page';
-import { PotlukkDetailsGuestPage } from './pages/potlukk-details-guest-page';
+import { PotlukkDetailsGuestPage } from './pages/potlukk-details-guest-page'
+import { createPotlukkReducer, rootSaga} from './reducers/potlukk-creation-reducer';
 
 const queryClient = new QueryClient();
 
 //create saga middleware
 const sagaMiddleware = createSagaMiddleware();
 // Create a store to use the REDUX reducer, and apply saga middleware
-// const store = createStore(createPotlukkReducer, applyMiddleware(sagaMiddleware))
+const allReducers = combineReducers({createPotlukkReducer});
+//const store = configureStore(combineReducers, applyMiddleware(sagaMiddleware));
 // run saga middleware
-// sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga)
 
 
 function App() {
@@ -42,14 +45,13 @@ function App() {
   );
 }
 
-
 export default App;
 
-function createStore(todoReducer: any, arg1: any) {
+/*function createStore(todoReducer: any, arg1: any) {
   throw new Error('Function not implemented.');
-}
+} */
 
-function applyMiddleware(sagaMiddleware: SagaMiddleware<object>): any {
+/*function applyMiddleware(sagaMiddleware: SagaMiddleware<object>): any {
   throw new Error('Function not implemented.');
-}
+} 8*/
 
