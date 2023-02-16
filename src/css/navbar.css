@@ -1,21 +1,54 @@
 
 img{
-    height: 40px;
-    width: 40px;
+    height: 15px;
+    width: 15px;
 }
 
-button{
-    border-radius: 8px;
-    border-color: transparent;
-    background-color: rgb(167, 188, 228);
-    font-weight: bold;
-    color: white;
-}
-
-.appName{
-    color: white;
-    padding: 10px;
-    background-color: #2C345C;
-    border-radius: 15px;
+.navbar {
+    background-color: rgb(134, 37, 37);
+    height: 45px;
     text-align: center;
-}
+    padding: 25px;
+  }
+  
+  .navButton {
+    background-color: rgb(172, 69, 69);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0;
+    padding: 10px 20px;
+  }
+  
+  .navButton:hover {
+    background-color: rgb(134, 37, 37);
+  }
+  
+  .navButton:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  /* styling for background display */
+  #background-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    color: white;
+    font-size: 20vw;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    #background-text {
+      font-size: 20vw;
+    }
+  }
+    

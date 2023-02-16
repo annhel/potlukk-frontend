@@ -85,33 +85,29 @@ export function RegistrationPage(){
     }
 
     return<>
-    
-    <section>
-    <h1>Register an Account:</h1>
-        <input type="text" placeholder="First name" onChange={e=> setForm({...form, fname: e.target.value})}/>
-        <input type="text" placeholder="Last name" onChange={e=> setForm({...form, lname:e.target.value})}/>
-        <input type="text" placeholder="Username" onChange={e=> setForm({...form, username: e.target.value})}/>
-        <input type="text" placeholder="Password" onChange={e=> setForm({...form, password:e.target.value})}/>
-        <input type="text" placeholder="Confirm Password" onChange={e=> confirmPassword = e.target.value}/>
-    </section>
-    <div>
+    <div className="registrationContainer">
+        <h1 className="regTitle">Discover the joy of potlucks with Potlukkin'!</h1>
+        <h2 className="regSubtitle">Register an Account:</h2>
+        <input className="regInput" type="text" placeholder="First name" onChange={e=> setForm({...form, fname: e.target.value})}/>
+        <input className="regInput" type="text" placeholder="Last name" onChange={e=> setForm({...form, lname:e.target.value})}/>
+        <input className="regInput" type="text" placeholder="Username" onChange={e=> setForm({...form, username: e.target.value})}/>
+        <input className="regInput" type="text" placeholder="Password" onChange={e=> setForm({...form, password:e.target.value})}/>
+        <input className="regInput" type="text" placeholder="Confirm Password" onChange={e=> confirmPassword = e.target.value}/>
     <table className="regTable">
-            <thead>
-                <tr><th>Allergens</th></tr>
+            <thead className="regThead">
+                <tr><th className="regTh">Allergens</th></tr>
             </thead>
-            <tbody>
-                <tr><td><input type="checkbox" name="Milk" value="MILK" onChange={e => handleAllergy(e)}/><label htmlFor="Milk">Milk</label></td></tr>
-                <tr><td><input type="checkbox" name="Egg" value="EGG"/><label htmlFor="Egg">Egg</label></td></tr>
-                <tr><td><input type="checkbox" name="Fish" value="FISH"/><label htmlFor="Fish">Fish</label></td></tr>
-                <tr><td><input type="checkbox" name="Shellfish" value="SHELLFISH"/><label htmlFor="Shellfish">Shellfish</label></td></tr>
-                <tr><td><input type="checkbox" name="Soy" value="SOY"/><label htmlFor="Soy">Soy</label></td></tr>
-                <tr><td><input type="checkbox" name="Wheat" value="WHEAT"/><label htmlFor="Wheat">Wheat</label></td></tr>
-                <tr><td><input type="checkbox" name="Treenut" value="TREENUT"/><label htmlFor="Treenut">Treenut</label></td></tr>
+            <tbody className="regTbody">
+                <tr><td className="regTd"><input type="checkbox" name="Milk" value="MILK" onChange={e => handleAllergy(e)}/><label htmlFor="Milk">Milk</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Egg" value="EGG"/><label htmlFor="Egg">Egg</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Fish" value="FISH"/><label htmlFor="Fish">Fish</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Shellfish" value="SHELLFISH"/><label htmlFor="Shellfish">Shellfish</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Soy" value="SOY"/><label htmlFor="Soy">Soy</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Wheat" value="WHEAT"/><label htmlFor="Wheat">Wheat</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Treenut" value="TREENUT"/><label htmlFor="Treenut">Treenut</label></td></tr>
             </tbody>
-        </table>
+    </table>
+    <button className="regButton" onClick={registerLukker}>Register</button>
     </div>
-    <section>
-        <button onClick={registerLukker}>Register</button>
-    </section>
     </>
 }

@@ -2,7 +2,8 @@ import { NumberLiteralType } from "typescript"
 import { NavBar } from "../navigation/navbar"
 import "../css/guest-view.css"
 import { useQuery, useQueryClient } from "react-query";
-import { getPotlukkByID } from "../api/guest-view-requests";
+import { getPotlukkByID, PotlukkGuestInfo } from "../api/guest-view-requests";
+import { useParams } from "react-router";
 // import { LukkerUserInfo, HomeState } from "./home-page"
 // Key Functionality:
 //  Three-ish Main Components:
@@ -18,8 +19,8 @@ import { getPotlukkByID } from "../api/guest-view-requests";
 
 export function PotlukkDetailsGuestPage(){
     const queryClient = useQueryClient();
-    const potlukkId = Number(localStorage.getItem("guestPotlukkId"))
-    const { data:PotlukkDetails=[]} = useQuery(["potlukkGuestDetailsCache", potlukkId], () => getPotlukkByID(potlukkId));
+    const params = useParams()
+    const { data:PotlukkDetails} = useQuery(["potlukkGuestDetailsCache", params.potlukkId], () => getPotlukkByID(Number(params.potlukkId)));
 
     function submitDish(){
         // queryClient.invalidateQueries("potlukkGuestDetailsCache")
@@ -67,9 +68,7 @@ export function PotlukkDetailsGuestPage(){
                     <tr><th>Attendees</th></tr>
                 </thead>
                 <tbody className="display-tbody">
-                {/* {PotlukkDetails.map(p => <> 
-                    <tr><td>{p.invitations.potlukker.fname} {p.invitations.potlukker.lname}</td></tr>
-                    </>)}; */}
+                { noInvites(PotlukkDetails.invitations) ? PotlukkDetails[0].invitations.map(invite => <tr><td>{invite.potlukker.fname}</td></tr>)};
                 </tbody>
             </table>
         </span>
@@ -83,4 +82,18 @@ export function PotlukkDetailsGuestPage(){
         <button id="maybe" className="mbutton">Maybe</button>
     </div>
     </>
+}
+function isUndefined(x: PotlukkGuestInfo | undefined){
+    if(x === undefined){
+        return true;
+    }else{
+    return false;
+    }
+}
+function noInvites(x:[]){
+    if(x.length === 0){
+        return true;
+    }else{
+    return false;
+    }
 }

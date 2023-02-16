@@ -29,7 +29,7 @@ function App() {
     <Route path='/register' element={<RegistrationPage/>}/>
     <Route path='/home' element={<HomePage/>}/>
     <Route path='/potlukkinfohost/:potlukkId' element={<PotlukkDetailsHostPage/>}/>
-    <Route path='/potlukkinfoguest/:potlukkId' element={<PotlukkDetailsGuestPage/>}/>
+    {/* <Route path='/potlukkinfoguest/:potlukkId' element={<PotlukkDetailsGuestPage/>}/> */}
     <Route path='/potlukkregistration' element={<HostPotlukk/>}/>
 
   </Routes>
