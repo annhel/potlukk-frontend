@@ -20,12 +20,14 @@ export function NavBar(){
     }
 
     return<>
-    <h2 className="appName">Potlukkin'</h2>
-    <section>
-        <button onClick={handleHome}>Home</button>
-        <button onClick={handleHost}>Host a Potlukk</button>
-        <button onClick={handleViewPotlukks}>My Potlukks</button>
-        <button onClick={handleLogout}><img src="https://icons.veryicon.com/png/o/object/material_design_icons/logout-14.png" alt="Logout" /></button>
-    </section>
+    <div className="navbar">
+        <div id="background-text">Potlukkin'</div>
+        
+        <button className="navButton" onClick={handleHome}>Home</button>
+        <button className="navButton" onClick={handleHost}>Host a Potlukk</button>
+        <button className="navButton" onClick={handleViewPotlukks}>My Potlukks</button>
+        <button className="navButton" onClick={handleLogout}><img src="https://icons.veryicon.com/png/o/object/material_design_icons/logout-14.png" alt="Logout" /></button>
+    </div>
     </>
+
 }

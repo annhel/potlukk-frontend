@@ -41,20 +41,26 @@ export function SignInPage(){
     }
 
     return<>
-    <h1>Potlukkin'</h1>
+    <div className="container">
+    <div className="image-container"></div>
+    <div className="form-container">
+    <h1 className="title">Potlukkin'</h1>
+    <h2 className="subtitle">'Bring your dish, bring your heart - Potlukkin brings us closer!'</h2>
     <section>
-    <h2 className="signIn">Sign-In</h2>
+    <h2 className="signin">Sign-In</h2>
     <form onSubmit={(e:FormEvent<HTMLFormElement>) => handleSignIn(e)}>
-        <input type="text" placeholder="Username" onChange={e=> setForm({...form, username:e.target.value})}/>
-        <input type="password" placeholder="Password" onChange={e=> setForm({...form, password:e.target.value})}/>
-        <button type="submit" >Sign-in</button>
+        <input className="signinInput" type="text" placeholder="Username" onChange={e=> setForm({...form, username:e.target.value})}/>
+        <input className="signinInput" type="password" placeholder="Password" onChange={e=> setForm({...form, password:e.target.value})}/>
+        <button className="signinButton" type="submit" >Sign-in</button>
     </form>
     </section>
     <hr />
     <section>
         <Link to="/register">
-        <button>Register</button>
+        <button className="signinButton">Register</button>
         </Link>
     </section>
+    </div>
+    </div>
     </>
 }

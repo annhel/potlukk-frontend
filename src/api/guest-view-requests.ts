@@ -27,7 +27,7 @@ export type guests = {
 }
 
 export type inviteInfo = {
-    potlukker: guests[]
+    potlukker: {fname:string, lname:string}
     status: string
 }
 
@@ -38,7 +38,7 @@ export type PotlukkGuestInfo = {
     invitations: inviteInfo[]
 }
 
-export async function getPotlukkByID(potlukkId: number): Promise<PotlukkGuestInfo[]>{
+export async function getPotlukkByID(potlukkId: number): Promise<PotlukkGuestInfo | undefined>{
 
     const query = 
     `query getPotlukkByID($potlukkId:Int) {
@@ -73,6 +73,9 @@ export async function getPotlukkByID(potlukkId: number): Promise<PotlukkGuestInf
 
       const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body, headers:{"Content-type": "application/json"}})
       const responseBody = await httpResponse.json();
-      const potlukkinfo:PotlukkGuestInfo[] = responseBody.data;
-      return potlukkinfo;
+      const potlukkinfo:PotlukkGuestInfo[] = responseBody.data.potlukks;
+      if(!potlukkinfo){
+        return undefined;
+      }
+      return potlukkinfo[0];
     }

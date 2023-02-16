@@ -8,7 +8,6 @@ import { NavBar } from "../navigation/navbar";
 import "../css/home.css"
  
 export function HomePage(){
-    // const[hostPotlukks, setHostPotlukks] = useState<PotlukkDetails[]>([])
     const { data: hostData = []} = useQuery("hostCache", getHostPotlukks)
     const { data: guestData = []} = useQuery("guestCache", getGuestPotlukks)
     const { data: notifData = []} = useQuery("notifCache", getNotifs)
@@ -17,46 +16,44 @@ export function HomePage(){
     const navigate = useNavigate();
 
     function handleDetailsHost(potlukkId: number){
-        localStorage.setItem("hostPotlukkId", potlukkId.toString())
         navigate("/potlukkinfohost/" + potlukkId)
     }
 
     function handleDetailsGuest(potlukkId: number){
-        localStorage.setItem("guestPotlukkId", potlukkId.toString())
         navigate("/potlukkinfoguest/" + potlukkId)
     }
 
     return<>
     <NavBar></NavBar>
-    <h1>HomePage</h1>
-    <section className="homeSection">
+    <h1 className="homeTitle">Home Page</h1>
+    <section className="homeContainer">
             <table className="homeTable">
-                <thead className="homeThead">
-                    <tr><th colSpan={3}>I'm Hosting!</th></tr>
+                <thead >
+                    <tr><th className="homeTh"colSpan={3}>I'm Hosting!</th></tr>
                 </thead>
-                <tbody className="homeTbody">
+                <tbody>
                 {hostData.map(hd=> 
-                    <tr key ={hd.potlukkId}><td>{hd.details.title}</td><td><button onClick={()=>handleDetailsHost(hd.potlukkId)}>Details</button></td></tr>
+                    <tr key ={hd.potlukkId} className="homeTr"><td className="homeTd">{hd.details.title}</td><td className="homeTd"><button onClick={()=>handleDetailsHost(hd.potlukkId)}>Details</button></td></tr>
                     )}
                 </tbody>
             </table>
             <table className="homeTable">
-                <thead className="homeThead">
-                    <tr><th colSpan={2}>I'm Going!</th></tr>
+                <thead >
+                    <tr><th className="homeTh" colSpan={2}>I'm Going!</th></tr>
                 </thead>
                 <tbody className="homeTbody">
                 {guestData.map(gd=> 
-                    <tr key ={gd.potlukkId}><td>{gd.details.title}</td><td><button onClick={()=>handleDetailsGuest(gd.potlukkId)}>Details</button></td></tr>
+                    <tr key ={gd.potlukkId} className="homeTr"><td className="homeTd">{gd.details.title}</td><td className="homeTd"><button onClick={()=>handleDetailsGuest(gd.potlukkId)}>Details</button></td></tr>
                     )}
                 </tbody>
             </table>
-            <table className="homeTable">
+            <table >
                 <thead className="homeThead">
-                    <tr><th colSpan={2}>Notifications</th></tr>
+                    <tr className="homeTr"><th className="homeTh" colSpan={2}>Notifications</th></tr>
                 </thead>
                 <tbody className="homeTbody">
                 {notifData.map(nd=> 
-                    <tr key ={nd.eventId}><td>{nd.kind}</td><td>{nd.affectedPotlukkId}</td><td></td></tr>
+                    <tr key ={nd.eventId} className="homeTr"><td className="homeTd">{nd.kind}</td><td className="homeTd">{nd.affectedPotlukkId}</td><td></td></tr>
                     )}
                 </tbody>
             </table>
