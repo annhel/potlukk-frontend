@@ -118,11 +118,11 @@ export async function getNotifs():Promise<NotifDetails[]>{
 
     const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body: requestBody, headers:{"Content-type": "application/json"}})
     const responseBody = await httpResponse.json();
-    const notifs:NotifDetails[] = responseBody.data
-
+    const notifs:NotifDetails[] = responseBody.data.notifications
+      console.log(notifs)
     //filter for notifs pertaining to your potlukks    
    const userPotlukks = await getHostPotlukks();
-   const filteredNotifs = notifs.filter(n => userPotlukks.some((p)=> p.potlukkId === n.affectedPotlukkId ))
+   const filteredNotifs = notifs.filter((n) => userPotlukks.some((p)=> p.potlukkId === n.affectedPotlukkId ))
     return filteredNotifs;
 }
 

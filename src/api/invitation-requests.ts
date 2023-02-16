@@ -19,7 +19,7 @@ export async function getLukkers(): Promise<LukkerUserInfo[]>{
 
     const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body: requestBody, headers:{"Content-type": "application/json"}}) 
     const responseBody = await httpResponse.json();
-    const lukkers:LukkerUserInfo[] = responseBody.data;
+    const lukkers:LukkerUserInfo[] = responseBody.data.lukkers;
     return lukkers;
 }
 

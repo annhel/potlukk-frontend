@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { useQuery } from "react-query"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { createInviteMutation, getLukkers } from "../api/invitation-requests"
 
 
@@ -12,24 +13,28 @@ export function InviteGuests(){
         await createInviteMutation(params, userId)
     }
     //useState here?
-    function handleFilter(){
+    const [searchedUser, setSearchedUser] = useState<string>("");
 
+    const navigate = useNavigate();
+
+    function handleSkip(){
+        navigate("/home")
     }
 
 
     return<>
     <h1>Potlukk Title Here</h1>
     <h2>Invite some friends!</h2>
-    <input type="text" placeholder="Search Lukker..." onChange={handleFilter}></input>
+    <input type="text" placeholder="Search Lukker..." onChange={e => setSearchedUser(e.target.value)}></input>
 
     <table>
         <thead>
             <tr><th colSpan={3}>Lukkers</th></tr>
         </thead>
         <tbody>
-            {lukkersData.map(l=> 
-            <tr><td>{l.username}</td><td>{l.fname} {l.lname}</td><td> <button onClick={()=> handleInvite(l.userId)}>Invite</button> </td></tr>
-            )};
+            {lukkersData.filter(ld => ld.username.includes(searchedUser)).map(l=> 
+            <tr key={l.userId}><td>{l.username}</td><td>{l.fname} {l.lname}</td><td> <button onClick={()=> handleInvite(l.userId)}>Invite</button> </td></tr>
+            )}
         </tbody>
     </table>
 
@@ -43,6 +48,6 @@ export function InviteGuests(){
     </table>
 
     <button>Send Invitations</button>
-    <button>Skip for now</button>
+    <button onClick={handleSkip}>Skip for now</button>
     </>
 }
