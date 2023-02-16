@@ -9,7 +9,7 @@ export type SetEventTags = {type: "SET_TAGS", payload: string[]}; //action to fo
 export type SetPotlukkPublic = {type: "TOGGLE_PUBLIC"}; //action to check if event is public
 export type SetEventDesc = {type: "SET_DESCRIPTION", payload: string}; //action for event description
 export type AddEvent =  {type: "ADD_EVENT"}; //action to create event, insert host ID, and change status to SCHEDULED
-export type EventTrackerAction = SetPotlukkTitle | SetEventTime | SetEventLocation | SetEventTags | SetPotlukkPublic | SetEventDesc | AddEvent | SetEventStatus;
+export type EventTrackerAction = SetPotlukkTitle | SetEventTime | SetEventLocation | SetEventTags | SetPotlukkPublic | SetEventDesc | AddEvent 
 
 //Creating reducer to switch on actions when called upon from user input
 export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTrackerAction): PotlukkDetailsForm {

@@ -1,5 +1,9 @@
 import { NumberLiteralType } from "typescript"
 import { NavBar } from "../navigation/navbar"
+import "../css/guest-view.css"
+import { useQuery, useQueryClient } from "react-query";
+import { getPotlukkByID, PotlukkGuestInfo } from "../api/guest-view-requests";
+import { useParams } from "react-router";
 // import { LukkerUserInfo, HomeState } from "./home-page"
 // Key Functionality:
 //  Three-ish Main Components:
@@ -13,67 +17,83 @@ import { NavBar } from "../navigation/navbar"
 //}
 
 
-export function PotlukkDetailsGuest(){
+export function PotlukkDetailsGuestPage(){
+    const queryClient = useQueryClient();
+    const params = useParams()
+    const { data:PotlukkDetails} = useQuery(["potlukkGuestDetailsCache", params.potlukkId], () => getPotlukkByID(Number(params.potlukkId)));
+
+    function submitDish(){
+        // queryClient.invalidateQueries("potlukkGuestDetailsCache")
+    //     return <>
+    //     <input type="text" placeholder="Dish name"></input>
+    //     </>
+      }
+    function mutateInviteStatus(){
+        queryClient.invalidateQueries("potlukkGuestDetailsCache")
+
+    }
 
     return<>
+    <NavBar></NavBar>
     <h1>Potlukk Details: Guest</h1>
-
-    <div id="potlukk-name">
-        <h2>Potlukk Name: Revature Bash</h2>
-        <h6>Awesome part to celebrate unity</h6>
-    </div>
-
-    <div id="potlukk-location">
-        <h2>Location</h2>
-        <h6 id="address-display">Address</h6>
-    </div>
-
-    <div id="potlukk-time">
-        <h2>Time</h2>
-        <h6 id="time-display">Time Display</h6>
-        <h6 id="date-display">Date Display</h6>
-    </div>
+    <section className="guestDetails">
+    {PotlukkDetails.map(p => <>
+        <span id="potlukkdetails" className="potlukkdetails">
+                    <h2>Potlukk Name: {p.details.title}</h2>
+                    <h3>{p.details.description}</h3>
+                    <h2>Location</h2>
+                    <h3 id="address-display">{p.details.location}</h3>
+                    <h2>Time</h2>
+                    <h3 id="date-display">{p.details.time}</h3>
+                    <h3 id="time-display">3PM Est</h3>
+        </span>
+    </>)}
+        <span className="display-span">
+            <table id="dishes-table" className="display-table">
+                <thead className="display-thead">
+                    <tr><th>Dishes</th></tr>
+                </thead>
+                <tbody className="display-tbody">
+                {PotlukkDetails.map(p => <> 
+                    <tr><td>{p.dishes.name}</td></tr>
+                    </>)}
+                </tbody>
+            </table>
+            <div className="divider"/>
+            <button id="bring-dish" className="bdButton" onClick={submitDish}>Bring Dish</button>
+        </span>
+        <span className="display-span">
+            <table id="attendees-table" className="display-table">
+                <thead className="display-thead">
+                    <tr><th>Attendees</th></tr>
+                </thead>
+                <tbody className="display-tbody">
+                { noInvites(PotlukkDetails.invitations) ? PotlukkDetails[0].invitations.map(invite => <tr><td>{invite.potlukker.fname}</td></tr>)};
+                </tbody>
+            </table>
+        </span>
+    </section>
 
     <div id="decision" className="adm-buttons">
-        <button id="accepted">Accepted</button>
-        <button id="declined">Declined</button>
-        <button id="maybe">Maybe</button>
-    </div>
-
-    <table id="dishes-table" className="display-table">
-        <thead>
-            <tr>
-                <th>Dishes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Pupusas</td>
-            </tr>
-            <tr>
-                <td>Água de Jamaica</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table id="attendees-table" className="display-table">
-        <thead>
-            <tr>
-                <th>Attendees</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>John Smith</td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div>
-        <button id="bring-dish">Bring Dish</button>
+        <button id="accepted" className="abutton">Accept</button>
+        <div className="divider"/>
+        <button id="declined" className="dbutton">Decline</button>
+        <div className="divider"/>
+        <button id="maybe" className="mbutton">Maybe</button>
     </div>
     </>
+}
+function isUndefined(x: PotlukkGuestInfo | undefined){
+    if(x === undefined){
+        return true;
+    }else{
+    return false;
+    }
+}
+function noInvites(x:[]){
+    if(x.length === 0){
+        return true;
+    }else{
+    return false;
+    }
 }

@@ -1,12 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../css/navbar.css"
 
 export function NavBar(){
+    const navigate = useNavigate();
+
+    function handleLogout(){
+        localStorage.clear();
+        navigate("/")
+    }
+    function handleHome(){
+        navigate(`/home`);
+    }
+    function handleHost(){
+        navigate(`/potlukkregistration`);
+    }
+    function handleViewPotlukks(){ 
+        let potlukkId = localStorage.userId;
+        navigate(`/potlukkinfoguest/${potlukkId}`);
+    }
+
     return<>
-    <h2>Potlukkin'</h2>
-    <button>Home<Link to="/home"></Link></button>
-    <button>Host a Potlukk<Link to="/potlukkinfohost/:potlukkID"></Link></button>
-    <button>My Potlukks<Link to="/potlukkinfoguest/:potlukkID"></Link></button>
-    <button><img src="https://icons.veryicon.com/png/o/object/material_design_icons/logout-14.png" alt="Logout" /></button>
+    <div className="navbar">
+        <div id="background-text">Potlukkin'</div>
+        
+        <button className="navButton" onClick={handleHome}>Home</button>
+        <button className="navButton" onClick={handleHost}>Host a Potlukk</button>
+        <button className="navButton" onClick={handleViewPotlukks}>My Potlukks</button>
+        <button className="navButton" onClick={handleLogout}><img src="https://icons.veryicon.com/png/o/object/material_design_icons/logout-14.png" alt="Logout" /></button>
+    </div>
     </>
+
 }

@@ -40,7 +40,7 @@ export type InvitationUpdateInput = {
     status: string // invite status
   }
   
-  type LukkerUserInfo = {
+export type LukkerUserInfo = {
     userId: number
     username: string
     fname: string
