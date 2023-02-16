@@ -16,9 +16,9 @@
 // State Management: use Redux for this, Saga used for middle ware updates
 //                          use it to update the dishes, and attendee info as the state changes
 
-export function PotlukkDetailsHostPage(){
+/*export function PotlukkDetailsHostPage(){
 
     return<>
     <h1>Potlukk Details: Host</h1>
     </>
-}
+} */
