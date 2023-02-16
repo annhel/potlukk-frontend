@@ -14,7 +14,6 @@ export type MaybeInviteAction = {type: "MAYBE_INVITE", payload: string}
 //saga action to create dishes
 export type CreateDishAction = {type:"CREATE_DISH", payload: DishFormInput}
 export type RequestPopulateDishes = {type:"REQUEST_POPULATE_DISHES"}
-
 export type GuestPageActions = BringDishAction | AcceptInviteAction | DeclineInviteAction | MaybeInviteAction | CreateDishAction | RequestPopulateDishes
 
 //Redux initial state here
