@@ -15,6 +15,7 @@ import { useReducer } from "react"
 import { PotlukkDetailsForm } from "../api/types"
 import { createPotlukkReducer } from "../reducers/potlukk-creation-reducer"
 import { potlukkCreated } from "../api/potlukk-creation"
+import { useNavigate } from "react-router"
 
 //Creating a state variable holding "empty" initial data using PotlukkDetailsForm type
 const creationState: PotlukkDetailsForm = {
@@ -29,14 +30,13 @@ const creationState: PotlukkDetailsForm = {
 
 //Creating function to grab values from input fields of potlukk creation
 export function HostPotlukk(){
-    
+    const navigate = useNavigate();
     
     const [creationTracker, dispatch] = useReducer(createPotlukkReducer, creationState);
 
     async function makePotlukk(){
         const createdPotlukk = await potlukkCreated({hostId:Number(65429), details:creationTracker});
-        console.log(createdPotlukk);
-
+        navigate("/potlukkinfohost/"+ createdPotlukk.potlukkId +"/invites")
     }
 
 
@@ -50,7 +50,7 @@ export function HostPotlukk(){
     <div id="createEvent">
         <input type="text" placeholder="Event Title" onChange={c=>dispatch({type:"SET_EVENT_NAME", payload: c.target.value})}/>
         <br />
-        <input type="text" placeholder="Date & Time" onChange={c=>dispatch({type:"SET_TIME", payload: Number(10000)})}/>
+        <input type="date" placeholder="Date & Time" onChange={c=>dispatch({type:"SET_TIME", payload: Number(10000)})}/>
         <br />
         <input type="text" placeholder="Location" onChange={c=>dispatch({type: "SET_LOCATION", payload: c.target.value})}/>
         <br />
@@ -69,27 +69,6 @@ export function HostPotlukk(){
         <button type="submit">Search</button>
     </div>
     <br />
-    <div>
-        <table>
-            <thead>
-                <th>Lukkers</th>
-            </thead>
-            <tbody>
-                <tr><td>Username: Full Name</td><button>Invite</button></tr>
-            </tbody>
-        </table>
-    </div>
-    <br />
-    <div>
-        <table>
-            <thead>
-                <th>Invited Lukkers</th>
-            </thead>
-            <tbody>
-                <tr><td>Username: Full Name</td><button>Remove</button></tr>
-            </tbody>
-        </table>
-    </div>
     </>
 } 
 

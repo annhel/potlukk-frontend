@@ -1,3 +1,4 @@
+import { DishesSwapInput, InvitationUpdateInput } from "./types"
 
 // request for potlukk by ID
 export type potlukkDetails ={
@@ -75,4 +76,45 @@ export async function getPotlukkByID(potlukkId: number): Promise<PotlukkGuestInf
       const responseBody = await httpResponse.json();
       const potlukkinfo:PotlukkGuestInfo[] = responseBody.data.potlukks;
       return potlukkinfo[0];
+    }
+
+//update invite status
+export async function updateStatus(input: InvitationUpdateInput){
+
+    const query = 
+    `mutation updateInviteStatus($input: InvitationUpdateInput!) {
+        updateInvite(input:$input){
+          invitations {
+            potlukker {
+              fname
+            }
+          }
+        }
+      }`
+
+      const variables = {input: input}
+      // core request code-block
+      const body = JSON.stringify({query,variables})
+
+      const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body, headers:{"Content-type": "application/json"}})
+    }
+
+//submit dish form 
+export async function createDish(input: DishesSwapInput){
+
+    const query = 
+    `mutation swapPotlukkDishes($input: DishesSwapInput!){
+        swapPotlukkDishes(input:$input){
+          dishes{
+            name
+            allergens
+          }
+        }
+        }`
+
+      const variables = {input: input}
+      // core request code-block
+      const body = JSON.stringify({query,variables})
+
+      const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body, headers:{"Content-type": "application/json"}})
     }

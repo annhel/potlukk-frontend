@@ -40,7 +40,7 @@ export function PotlukkDetailsGuestPage(){
                 </tbody>
             </table>
             <div className="divider"/>
-            <button id="bring-dish" className="bdButton">Bring Dish</button>
+            {/* <button id="bring-dish" className="bdButton">Bring Dish</button> */}
         </span>
         <span className="display-span">
             <table id="attendees-table" className="display-table">

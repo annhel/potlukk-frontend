@@ -49,3 +49,44 @@ export async function createInviteMutation(potlukkId: number, lukkerId: number):
     return lukkers;
 }
 
+//requests for list of invited lukkers
+type Potlukker = {
+  fname: string
+  lname: string
+  username: string
+}
+
+type PotlukkGuestInfo = {
+    invitations: Potlukker[]
+    potlukkId: number
+    details:{title:string}
+}
+export async function getPotlukkGuestsByID(potlukkId: number): Promise<PotlukkGuestInfo>{
+    
+  const query = 
+  `query invites($potlukkId: Int!){
+    potlukks(potlukkId: $potlukkId) {
+      details {
+        title
+      }
+      invitations {
+        potlukker {
+          fname
+          lname
+          username
+        }
+      }
+      potlukkId
+    }
+  }`
+
+  const variables = {potlukkId: potlukkId}
+
+  const requestBody = JSON.stringify({query, variables});
+  const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body: requestBody, headers:{"Content-type": "application/json"}}) 
+  const responseBody = await httpResponse.json();
+  const lukkers:PotlukkGuestInfo = responseBody.data;
+  return lukkers;
+}
+
+
