@@ -8,7 +8,6 @@ import { RegistrationPage } from './pages/registration-page';
 import { SignInPage } from './pages/sign-in-page';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import { HostPotlukk } from './pages/host-potlukk-page';
-import { PotlukkDetailsGuest } from './pages/potlukk-details-guest-page';
 
 const queryClient = new QueryClient();
 
