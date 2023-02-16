@@ -1,5 +1,6 @@
 
 import {PotlukkDetailsForm, PotlukkStatus} from "../api/types"
+import { all, takeEvery } from "@redux-saga/core/effects";
 
 // Creating Actions for PotlukkDetailsForm, PotlukkCreationInput, and Potlukk Status
 export type SetPotlukkTitle = {type: "SET_EVENT_NAME", payload: string}; //action for potlukk name
@@ -24,7 +25,8 @@ export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTra
         }
 
         case "SET_TIME": {
-            newState.time = action.payload;
+            let convertTime = new Date(action.payload);
+            newState.time = convertTime.getTime();
             return newState;
         }
 
@@ -54,4 +56,33 @@ export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTra
     }
 
     
+}
+
+//Sagas for Updating Potlukk
+//Sagas Actions
+
+export type UpdatePotlukk = {type: "POTLUKK_UPDATE_REQUEST", payload: PotlukkDetailsForm};
+//export type CancelPotlukk = {type: "POTLUKK_CANCEL_REQUEST", payload: number};
+
+//Worker Sagas
+
+//Type pulled in on const potlukks may not be the correct one
+
+/*function* upDatePotlukks(action: UpdatePotlukk){
+    const response = yield fetch("http://localhost:8000/graphql");
+    const latestPotlukk: Pot
+}*/
+
+//Watcher Saga
+
+function* watchUpdate():any {
+    yield takeEvery("POTLUKK_UPDATE_REQUEST", upDatePotlukks)
+}
+
+
+//Root Sagas
+export function* rootSaga(){
+    yield all([
+        watchUpdate()
+    ])
 }
