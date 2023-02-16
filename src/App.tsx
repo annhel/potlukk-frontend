@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { HomePage } from './pages/home-page';
-import { PotlukkDetailsHostPage } from './pages/potlukk-details-host';
+//import { PotlukkDetailsHostPage } from './pages/potlukk-details-host';
 import { RegistrationPage } from './pages/registration-page';
 import { SignInPage } from './pages/sign-in-page';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
@@ -17,6 +17,7 @@ const sagaMiddleware = createSagaMiddleware();
 // const store = createStore(createPotlukkReducer, applyMiddleware(sagaMiddleware))
 // run saga middleware
 // sagaMiddleware.run(rootSaga)
+
 
 function App() {
   return (<>
@@ -41,7 +42,9 @@ function App() {
   );
 }
 
+
 export default App;
+
 function createStore(todoReducer: any, arg1: any) {
   throw new Error('Function not implemented.');
 }
