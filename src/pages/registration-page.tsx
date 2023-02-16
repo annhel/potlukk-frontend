@@ -54,10 +54,17 @@ export function RegistrationPage(){
     //     (value) => value
     //   ).length;
     
-
+    
     function handleAllergy(event: React.ChangeEvent<HTMLInputElement>){
-        form.allergies = [...allergy];
-        form.allergies.push(event.target.value);
+        let allergens = [...form.allergies] 
+        if(event.target.checked){
+            allergens.push(event.target.value);
+            console.log(form.allergies)
+        }else{
+            allergens = allergens.filter(a => a !== event.target.value)
+            console.log(form.allergies)
+        }
+        form.allergies = allergens
     }
 
     async function registerLukker(){
@@ -69,16 +76,10 @@ export function RegistrationPage(){
             allergies: form.allergies
         })
  
-        alert(`User created - Happy Potlukkin'`)
-        let allLukkers = await GetAllLukkers()
-        let currentLukker = allLukkers.find(l=> form.username === l.username);
+        alert( `Welcome ` + lukker.fname! +` Happy Potlukkin'`)
 
-        if(!currentLukker){
-            return alert("No Lukk Finding User :(")
-        }
-
-        localStorage.setItem("username", currentLukker.username);
-        localStorage.setItem("userId", currentLukker.userId.toString());
+        localStorage.setItem("username", lukker.username);
+        localStorage.setItem("userId", lukker.userId.toString());
 
         navigate("/home");
 
@@ -99,12 +100,12 @@ export function RegistrationPage(){
             </thead>
             <tbody className="regTbody">
                 <tr><td className="regTd"><input type="checkbox" name="Milk" value="MILK" onChange={e => handleAllergy(e)}/><label htmlFor="Milk">Milk</label></td></tr>
-                <tr><td className="regTd"><input type="checkbox" name="Egg" value="EGG"/><label htmlFor="Egg">Egg</label></td></tr>
-                <tr><td className="regTd"><input type="checkbox" name="Fish" value="FISH"/><label htmlFor="Fish">Fish</label></td></tr>
-                <tr><td className="regTd"><input type="checkbox" name="Shellfish" value="SHELLFISH"/><label htmlFor="Shellfish">Shellfish</label></td></tr>
-                <tr><td className="regTd"><input type="checkbox" name="Soy" value="SOY"/><label htmlFor="Soy">Soy</label></td></tr>
-                <tr><td className="regTd"><input type="checkbox" name="Wheat" value="WHEAT"/><label htmlFor="Wheat">Wheat</label></td></tr>
-                <tr><td className="regTd"><input type="checkbox" name="Treenut" value="TREENUT"/><label htmlFor="Treenut">Treenut</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Egg" value="EGG" onChange={e => handleAllergy(e)}/><label htmlFor="Egg">Egg</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Fish" value="FISH" onChange={e => handleAllergy(e)}/><label htmlFor="Fish">Fish</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Shellfish" value="SHELLFISH" onChange={e => handleAllergy(e)}/><label htmlFor="Shellfish">Shellfish</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Soy" value="SOY" onChange={e => handleAllergy(e)}/><label htmlFor="Soy">Soy</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Wheat" value="WHEAT" onChange={e => handleAllergy(e)}/><label htmlFor="Wheat">Wheat</label></td></tr>
+                <tr><td className="regTd"><input type="checkbox" name="Treenut" value="TREENUT" onChange={e => handleAllergy(e)}/><label htmlFor="Treenut">Treenut</label></td></tr>
             </tbody>
     </table>
     <button className="regButton" onClick={registerLukker}>Register</button>

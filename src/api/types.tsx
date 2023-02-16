@@ -13,7 +13,7 @@ export type DishFormInput = {
     description: String
     broughtBy: number
     serves: number
-    allergens: []
+    allergens: string[]
   }
   
 export type DishesSwapInput = {

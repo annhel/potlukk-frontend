@@ -1,29 +1,28 @@
 import { useState } from "react"
 import { useQuery } from "react-query"
 import { useNavigate, useParams } from "react-router"
-import { createInviteMutation, getLukkers } from "../api/invitation-requests"
+import { createInviteMutation, getLukkers, getPotlukkGuestsByID } from "../api/invitation-requests"
 
 
 export function InviteGuests(){
-    const { data: lukkersData = []} = useQuery("hostCache", getLukkers)
-    // const { data: filteredLukkersData = []} = useQuery("hostCache", getLukkersByUsername)
+    const { data: lukkersData = []} = useQuery("userListCache", getLukkers)
     const params = Number(useParams())
+    const { data: potlukkGuests } = useQuery("invitedGuestCache", ()=>getPotlukkGuestsByID(params))
+
+    const [searchedUser, setSearchedUser] = useState<string>("");
 
     async function handleInvite(userId: number){
         await createInviteMutation(params, userId)
     }
-    //useState here?
-    const [searchedUser, setSearchedUser] = useState<string>("");
 
     const navigate = useNavigate();
-
-    function handleSkip(){
+    function handleHome(){
         navigate("/home")
     }
 
     return<>
-    <h1>Potlukk Title Here</h1>
-    <h2>Invite some friends!</h2>
+    <h1>It's Potlukkin' time at {potlukkGuests?.details.title}</h1>
+    <h2>Invite some friends:</h2>
     <input type="text" placeholder="Search Lukker..." onChange={e => setSearchedUser(e.target.value)}></input>
 
     <table>
@@ -42,11 +41,13 @@ export function InviteGuests(){
             <tr><th colSpan={3}>Invited Lukkers</th></tr>
         </thead>
         <tbody>
-            <tr><td>username</td><td>Fname + Lname</td><td> <button>Remove</button> </td></tr>
+            {potlukkGuests?.invitations.map(g => 
+            <tr><td>{g.username}</td><td>{g.fname} {g.lname}</td></tr>
+            )}
         </tbody>
     </table>
 
-    <button>Send Invitations</button>
-    <button onClick={handleSkip}>Skip for now</button>
+    <button onClick={handleHome}>Continue</button>
+    <button onClick={handleHome}>Skip for now</button>
     </>
 }
