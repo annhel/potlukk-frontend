@@ -7,6 +7,7 @@ export type potlukkDetails ={
     location: string
     time: number
     title: string
+    tags: string[]
 }
 
 export type hostInfo = {
@@ -45,6 +46,7 @@ export async function getPotlukkByID(potlukkId: number): Promise<PotlukkGuestInf
             location
             time
             title
+            tags
           }
           dishes {
             name

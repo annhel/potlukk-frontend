@@ -1,6 +1,5 @@
 
-import {PotlukkDetailsForm, PotlukkStatus} from "../api/types"
-import { all, takeEvery } from "@redux-saga/core/effects";
+import {PotlukkDetailsForm, PotlukkDetailsSwapForm, PotlukkStatus} from "../api/types"
 
 // Creating Actions for PotlukkDetailsForm, PotlukkCreationInput, and Potlukk Status
 export type SetPotlukkTitle = {type: "SET_EVENT_NAME", payload: string}; //action for potlukk name
@@ -9,11 +8,18 @@ export type SetEventLocation = {type: "SET_LOCATION", payload: string}; //action
 export type SetEventTags = {type: "SET_TAGS", payload: string[]}; //action to for tags of potlukk event
 export type SetPotlukkPublic = {type: "TOGGLE_PUBLIC"}; //action to check if event is public
 export type SetEventDesc = {type: "SET_DESCRIPTION", payload: string}; //action for event description
-export type AddEvent =  {type: "ADD_EVENT"}; //action to create event, insert host ID, and change status to SCHEDULED
-export type EventTrackerAction = SetPotlukkTitle | SetEventTime | SetEventLocation | SetEventTags | SetPotlukkPublic | SetEventDesc | AddEvent 
+
+//Saga Action
+export type UpdatePotlukkAction = {type: "POTLUKK_UPDATE_REQUEST", payload: PotlukkDetailsSwapForm};
+
+export type EventTrackerAction = SetPotlukkTitle | SetEventTime | SetEventLocation | SetEventTags | SetPotlukkPublic | SetEventDesc | UpdatePotlukkAction
+
+//Creating a default state to make the reducer redux compliant...???
+const initialState: PotlukkDetailsForm = {title: "Revature Party", location: "Venice Beach", status: "CANCELED" ,description: "Work Hard, Play Hard",
+isPublic: false, time: 123456, tags: ["React", "Misson Complete"]};
 
 //Creating reducer to switch on actions when called upon from user input
-export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTrackerAction): PotlukkDetailsForm {
+export function createPotlukkReducer(state: PotlukkDetailsForm = initialState, action: EventTrackerAction): PotlukkDetailsForm {
 
     const newState: PotlukkDetailsForm = JSON.parse(JSON.stringify(state)); //created clone of PotlukkDetailsForm
     
@@ -58,31 +64,3 @@ export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTra
     
 }
 
-//Sagas for Updating Potlukk
-//Sagas Actions
-
-export type UpdatePotlukk = {type: "POTLUKK_UPDATE_REQUEST", payload: PotlukkDetailsForm};
-//export type CancelPotlukk = {type: "POTLUKK_CANCEL_REQUEST", payload: number};
-
-//Worker Sagas
-
-//Type pulled in on const potlukks may not be the correct one
-
-/*function* upDatePotlukks(action: UpdatePotlukk){
-    const response = yield fetch("http://localhost:8000/graphql");
-    const latestPotlukk: Pot
-}*/
-
-//Watcher Saga
-
-function* watchUpdate():any {
-    yield takeEvery("POTLUKK_UPDATE_REQUEST", upDatePotlukks)
-}
-
-
-//Root Sagas
-export function* rootSaga(){
-    yield all([
-        watchUpdate()
-    ])
-}

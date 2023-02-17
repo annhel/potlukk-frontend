@@ -63,11 +63,6 @@ export function HostPotlukk(){
     <br />
     <button onClick={makePotlukk}>Create Event</button>   
     
-    <div id="lukkers">
-        <input type="text" placeholder="Search Lukkers" name="search"/>
-        <button type="submit">Search</button>
-    </div>
-    <br />
     </>
 } 
 
