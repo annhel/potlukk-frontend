@@ -1,50 +1,157 @@
-.guestDetails{
+
+.guestTitle{
+    font-size: 32px;
+    text-align: center;
+  }
+  
+  /* Style for the rectangular section */
+  .guestDetails {
     display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: space-evenly;
-    max-width: 1500px;
-    background-color: #eff3fc;
-    border: transparent;
-}
-
-.potlukkdetails{
-    text-align: left;
-}
-
-.display-table{
-    color: #2C345C;
-    border-top: #2C345C;
-    background-color: rgb(213, 221, 236);
-    border: 5px solid rgb(147, 153, 184);
-}
-
-.display-thead{
-    font-size: 23px;
-    background-color: rgb(213, 221, 236);
-}
-
-.display-tbody{
-    font-size: 19px;
-    background-color: rgb(255, 255, 255);
-}
-.display-span{
-    padding-top: 5%;
-}
-
-.adm-buttons{
-    text-align: center;
-    justify-content: space-evenly;
-}
-.abutton, .dbutton, .mbutton{
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  /* Style for the left portion */
+  .potlukkdetails {
+    width: 400px;
+    height: 500px;
+    background-color: #d8d8d8;
+    border-radius: 10px;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+  
+  /* Style for the h2 elements in the card */
+  .potlukkdetails h2 {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+  
+  /* Style for the buttons in the card */
+  .potlukkdetails button {
+    width: 200px;
+    height: 40px;
+    background-color: #d8b84e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  /* Style for the right portion */
+  .guestTable {
+    width: 600px;
+    height: 500px;
+    background-color: #f1f1f100;
+    border-radius: 10px;
+    padding: 30px;
+  }
+  
+  /* Style for the table */
+  .guests {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+  }
+  
+  .guests th, .guests td {
     padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .guests th {
+    background-color: #d8b84e;
+    color: white;
+  }
 
-}
+    .dishSection {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 200px;
+      }
+      
+      .dishForm {
+        width: 400px;
+        height: 700px;
+        background-color: #d8d8d8;
+        border-radius: 10px;
+        margin-right: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+      }
 
-.divider{
-    width:5px;
-    height:25px;
-    display:inline-block;
-}
-
-
+  .dishForm input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .dishForm table {
+    width: 60%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .dishForm table th, .dishForm table td {
+    padding: 3px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .dishForm table th {
+    background-color: #d8b84e;
+    color: white;
+  }
+  
+  .dishForm button {
+    width: 200px;
+    height: 40px;
+    background-color: #d8b84e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+  
+  .dishView {
+    width: 25%;
+    height: 500px;
+    background-color: #f1f1f100;
+    border-radius: 10px;
+    padding: 65px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+  }
+  
+  .dishView table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .dishView table th, .dishView table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .dishView table th {
+    background-color: #d8b84e;
+    color: white;
+  }

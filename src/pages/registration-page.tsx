@@ -26,7 +26,6 @@ export function RegistrationPage(){
     const navigate = useNavigate();
 
     const [form, setForm] = useState<RegistrationForm>({username:"", password:"", fname:"", lname:"", allergies:[]})
-    const [allergy, setAllergy] = useState<string[]>([]);
 
     // const variable to compare password entries?
     let confirmPassword = ""
@@ -57,12 +56,10 @@ export function RegistrationPage(){
     
     function handleAllergy(event: React.ChangeEvent<HTMLInputElement>){
         let allergens = [...form.allergies] 
-        if(event.target.checked){
+        if(event.target.checked === true){
             allergens.push(event.target.value);
-            console.log(form.allergies)
         }else{
             allergens = allergens.filter(a => a !== event.target.value)
-            console.log(form.allergies)
         }
         form.allergies = allergens
     }
@@ -76,7 +73,7 @@ export function RegistrationPage(){
             allergies: form.allergies
         })
  
-        alert( `Welcome ` + lukker.fname! +` Happy Potlukkin'`)
+        alert( `Welcome ` + lukker.fname +`! Happy Potlukkin'`)
 
         localStorage.setItem("username", lukker.username);
         localStorage.setItem("userId", lukker.userId.toString());

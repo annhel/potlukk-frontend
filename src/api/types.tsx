@@ -5,7 +5,7 @@ export type Dish = {
     description: String
     broughtBy: number //userId
     serves: number
-    allergens: []
+    allergens: string[]
   }
   
 export type DishFormInput = {

@@ -24,7 +24,8 @@ export function createPotlukkReducer(state: PotlukkDetailsForm, action: EventTra
         }
 
         case "SET_TIME": {
-            newState.time = action.payload;
+            let convertTime = new Date(action.payload);
+            newState.time = convertTime.getTime();
             return newState;
         }
 

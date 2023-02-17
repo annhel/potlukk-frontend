@@ -35,7 +35,7 @@ export function HostPotlukk(){
     const [creationTracker, dispatch] = useReducer(createPotlukkReducer, creationState);
 
     async function makePotlukk(){
-        const createdPotlukk = await potlukkCreated({hostId:Number(65429), details:creationTracker});
+        const createdPotlukk = await potlukkCreated({hostId:Number(localStorage.getItem("userId")), details:creationTracker});
         navigate("/potlukkinfohost/"+ createdPotlukk.potlukkId +"/invites")
     }
 
@@ -44,13 +44,13 @@ export function HostPotlukk(){
     <h1>Host a Potlukk: </h1>
     <div id="time">
         <label htmlFor="time">Time:</label>
-        <input type="time" id="currentTime"  />
+        <input type="datetime-local" id="potlukk-meet" onChange={c=>dispatch({type:"SET_TIME", payload: Number(c.target.value)})}/>
     </div>
 
     <div id="createEvent">
         <input type="text" placeholder="Event Title" onChange={c=>dispatch({type:"SET_EVENT_NAME", payload: c.target.value})}/>
         <br />
-        <input type="date" placeholder="Date & Time" onChange={c=>dispatch({type:"SET_TIME", payload: Number(10000)})}/>
+        <input type="date" placeholder="Date & Time" onChange={c=>dispatch({type:"SET_TIME", payload: Number(c.target.value)})}/>
         <br />
         <input type="text" placeholder="Location" onChange={c=>dispatch({type: "SET_LOCATION", payload: c.target.value})}/>
         <br />
