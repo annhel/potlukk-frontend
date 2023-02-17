@@ -16,9 +16,10 @@ import { guestPageReducer } from './reducers/guest-page-reducer';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux/es/exports';
 import { InviteGuests } from './pages/invitation-page';
+import { rootSaga } from './saga/guest-view';
 
+export const queryClient = new QueryClient();
 
-const queryClient = new QueryClient();
 
 //create saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -43,7 +44,7 @@ function App() {
     <Route path='/register' element={<RegistrationPage/>}/>
     <Route path='/home' element={<HomePage/>}/>
     <Route path='/potlukkinfohost/:potlukkId' element={<PotlukkDetailsHostPage/>}/>
-    <Route path='/potlukkinfohost/:potlukkId/invites' element={<InviteGuests/>}/>
+    <Route path='/potlukkinfohost/:potlukkId/invites/' element={<InviteGuests/>}/>
     <Route path='/potlukkinfoguest/:potlukkId' element={<PotlukkDetailsGuestPage/>}/>
     <Route path='/potlukkregistration' element={<HostPotlukk/>}/>
 

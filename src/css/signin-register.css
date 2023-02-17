@@ -73,8 +73,6 @@ body {
     background-color: rgb(119, 32, 32);
   }
 
-
-/* Center the content of the page horizontally and vertically */
 .registrationContainer {
   display: flex;
   flex-direction: column;
@@ -83,7 +81,6 @@ body {
   height: 100vh;
 }
 
-/* Style the h1 and h2 headings */
 .regTitle {
     text-align: center;
     font-size: 35px;
@@ -101,7 +98,6 @@ body {
     padding: 10px;
 }
 
-/* Style the input fields */
 .regInput {
   display: block;
   margin: 10px auto;
@@ -111,7 +107,6 @@ body {
   border-radius: 5px;
 }
 
-/* Style the table */
 .regTable {
   width: 15%;
   border-collapse: collapse;
