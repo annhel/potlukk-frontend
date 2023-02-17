@@ -1,5 +1,5 @@
 import React from 'react';
-import { configureStore, applyMiddleware, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { HomePage } from './pages/home-page';
@@ -13,7 +13,7 @@ import { PotlukkDetailsGuestPage } from './pages/potlukk-details-guest-page'
 import { createPotlukkReducer, rootSaga} from './reducers/potlukk-creation-reducer';
 
 import { guestPageReducer } from './reducers/guest-page-reducer';
-import { applyMiddleware, createStore } from 'redux';
+//import { applyMiddleware } from 'redux';
 import { Provider } from 'react-redux/es/exports';
 import { InviteGuests } from './pages/invitation-page';
 
@@ -22,10 +22,10 @@ const queryClient = new QueryClient();
 
 //create saga middleware
 const sagaMiddleware = createSagaMiddleware();
-// Create a store to use the REDUX reducer, and apply saga middleware
 
+// Create a store to use the REDUX reducer, and apply saga middleware
 const allReducers = combineReducers({createPotlukkReducer});
-//const store = configureStore(combineReducers, applyMiddleware(sagaMiddleware));
+const store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 
 // run saga middleware
 sagaMiddleware.run(rootSaga)
