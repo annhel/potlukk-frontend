@@ -43,14 +43,13 @@ export function HostPotlukk(){
     return<>
     <h1>Host a Potlukk: </h1>
     <div id="time">
-        <label htmlFor="time">Time:</label>
+
+        <label htmlFor="potlukk-time">Date & Time:</label>
         <input type="datetime-local" id="potlukk-meet" onChange={c=>dispatch({type:"SET_TIME", payload: Number(c.target.value)})}/>
     </div>
 
     <div id="createEvent">
         <input type="text" placeholder="Event Title" onChange={c=>dispatch({type:"SET_EVENT_NAME", payload: c.target.value})}/>
-        <br />
-        <input type="date" placeholder="Date & Time" onChange={c=>dispatch({type:"SET_TIME", payload: Number(c.target.value)})}/>
         <br />
         <input type="text" placeholder="Location" onChange={c=>dispatch({type: "SET_LOCATION", payload: c.target.value})}/>
         <br />

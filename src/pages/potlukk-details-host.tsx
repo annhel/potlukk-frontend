@@ -23,5 +23,21 @@ export function PotlukkDetailsHostPage(){
     return<>
     <NavBar></NavBar>
     <h1>Potlukk Details: Host</h1>
+
+    <h4>Update Potlukk</h4>
+    <div id="update-potlukk">
+        <input type="text" placeholder="Date & Time"/>
+        <br />
+        <input type="text" placeholder="Location"/>
+        <br />
+        <input type="text" placeholder="Description"/>
+        <br />
+        <input type="checkbox" id="update-status"/>
+        <label htmlFor="public">Make Public</label>
+    </div>
+    <button>Updated</button>
+    <button>Edit</button>
+    <button>Cancel</button>
     </>
 } 
+
