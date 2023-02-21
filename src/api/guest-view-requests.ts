@@ -75,12 +75,17 @@ export async function getPotlukkByID(potlukkId: number): Promise<PotlukkGuestInf
       const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body, headers:{"Content-type": "application/json"}})
       const responseBody = await httpResponse.json();
       const potlukkinfo:PotlukkGuestInfo[] = responseBody.data.potlukks;
+      
       return potlukkinfo[0];
     }
 
 //update invite status
-export async function updateStatus(input: InvitationUpdateInput){
-
+export type UpdatedInvite = {
+  invitations:{potlukker:{fname:string}}
+  status: string
+}
+export async function updateStatus(input: InvitationUpdateInput): Promise<UpdatedInvite>{
+  console.log(input)
     const query = 
     `mutation updateInviteStatus($input: InvitationUpdateInput!) {
         updateInvite(input:$input){
@@ -88,6 +93,7 @@ export async function updateStatus(input: InvitationUpdateInput){
             potlukker {
               fname
             }
+            status
           }
         }
       }`
@@ -98,6 +104,9 @@ export async function updateStatus(input: InvitationUpdateInput){
 
       const httpResponse = await fetch("http://127.0.0.1:8000/graphql", {method:"POST", body, headers:{"Content-type": "application/json"}})
       const responseBody = await httpResponse.json();
+      const statusinfo:UpdatedInvite = responseBody.data;
+      console.log(statusinfo)
+      return statusinfo;
     }
 
 //submit dish form 

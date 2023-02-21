@@ -1,28 +1,11 @@
 
-
-// Key Functionality:
-//  Three/Four Main Components:
-//      1) Time,Location.Description viewer with the buttons to Edit, Update(same thing?), and Cancel(this could mean cancel the potlukk or be sent back to home)
-//      2) Dishes View -> a table displaying the dish-name and an edit-button
-//          -dishes that contain allergens should be in red text --> something extra could be finding allergen logos to display next to the dish
-//          -Edit button should route you to either to an edit dish page or a pop-up window
-//              -Name and Description Input, Serving size input, Allergen selection, Save button, and delete button
-//      3) Potlukk Attendees View -> a table showing fullname and whether they have said: Accepted, Declined, or Maybe to the invite (also pending if the user hasn't replied)
-//  Additional Buttons: 
-//      [Bring Dish]-> creates a new dish (same as edit button but no delete button, we could do a [Cancel} instead which directs back to potlukk details) Should be marked as being brought by host
-//      [Request Dish] -> creates a dish that can be broughtBy someone -- check out api, this is a property that can be used   
-//      [Invite] -> can send more invites, can reuse the invite table from other component for this
-
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
 import { getPotlukkByID } from "../api/guest-view-requests";
-import { potlukkCreated } from "../api/potlukk-creation";
+import "../css/host-view.css"
 import { PotlukkDetailsSwapForm } from "../api/types";
 import { NavBar } from "../navigation/navbar";
-
-// State Management: use Redux for this, Saga used for middle ware updates
-//                          use it to update the dishes, and attendee info as the state changes
 
 export function PotlukkDetailsHostPage(){
 
@@ -30,16 +13,34 @@ export function PotlukkDetailsHostPage(){
     const usePotlukkDetails = ()=> useQuery(["potlukkHostDetailsCache", params.potlukkId], () => getPotlukkByID(Number(params.potlukkId)));
     const {data: PotlukkDetails} = usePotlukkDetails()
    
-    const [form, setForm] = useState<PotlukkDetailsSwapForm>({title})
+    const [form, setForm] = useState<PotlukkDetailsSwapForm>({title:"",   potlukkId: 0, location: "", status: "", description: "", isPublic: false, time: 0, tags: []})
+
+    let dateString = ""
+    if((PotlukkDetails?.details.time) !== undefined){ 
+        const date = new Date(PotlukkDetails.details.time * 1000);
+        dateString = date.toISOString().replace('T', ' ').slice(0, 19);
+    }
+
+    let formattedDate = ""
+    if((PotlukkDetails?.details.time) !== undefined){
+        const date = new Date(PotlukkDetails.details.time * 1000);
+        const monthAbbrev = date.toLocaleString('default', { month: 'short' });
+        const day = date.getDate();
+        const time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
+        formattedDate = `${monthAbbrev} ${day}, ${time}`;
+    }
+    
     
     return<>
     <NavBar></NavBar>
-    <h1>Potlukk Details: Host</h1>
-
-    <h4>Update Potlukk</h4>
-    <div id="update-potlukk">
-        <label htmlFor="potlukk-update-time">Date & Time</label>
-        <input type="datetime-local" id="update-meet" placeholder="Date & Time"/>
+    <h1 className="hostViewTitle">Potlukk Details: Host</h1>
+    <div className="hostViewDiv">
+        <div className="infoSection">
+            <div className="left-half">
+    <h2><b>{PotlukkDetails?.details.title}</b></h2>
+    <h3>Set for: {formattedDate}</h3>
+        <label htmlFor="potlukk-update-time"></label>
+        <input type="datetime-local" id="update-meet" placeholder="Date & Time" value={dateString}/>
         <br />
         <input type="text" placeholder="Location" value={PotlukkDetails?.details.location}/>
         <br />
@@ -52,8 +53,20 @@ export function PotlukkDetailsHostPage(){
         <br />
         <input type="checkbox" id="update-status"/>
         <label htmlFor="public">Make Public</label>
+        <button>Update Potlukk Event</button>
     </div>
-    <button>Update Potlukk Event</button>
+    <div className="right-half">
+            <table id="attendees-table" className="">
+        <thead className="display-thead">
+            <tr><th colSpan={2}>Attendees</th></tr>
+        </thead>
+            <tbody className="display-tbody">
+                { PotlukkDetails?.invitations.map(invite => <tr><td>{invite.potlukker.fname} {invite.potlukker.lname}</td><td>{invite.status}</td></tr>)}
+            </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
     </>
 } 
 

@@ -3,7 +3,7 @@ import {PotlukkDetailsForm, PotlukkDetailsSwapForm, PotlukkStatus} from "../api/
 
 // Creating Actions for PotlukkDetailsForm, PotlukkCreationInput, and Potlukk Status
 export type SetPotlukkTitle = {type: "SET_EVENT_NAME", payload: string}; //action for potlukk name
-export type SetEventTime = {type: "SET_TIME", payload: number}; //action for time of potlukk event
+export type SetEventTime = {type: "SET_TIME", payload: string}; //action for time of potlukk event
 export type SetEventLocation = {type: "SET_LOCATION", payload: string}; //action for location of potlukk event
 export type SetEventTags = {type: "SET_TAGS", payload: string[]}; //action to for tags of potlukk event
 export type SetPotlukkPublic = {type: "TOGGLE_PUBLIC"}; //action to check if event is public
@@ -15,8 +15,8 @@ export type UpdatePotlukkAction = {type: "POTLUKK_UPDATE_REQUEST", payload: Potl
 export type EventTrackerAction = SetPotlukkTitle | SetEventTime | SetEventLocation | SetEventTags | SetPotlukkPublic | SetEventDesc | UpdatePotlukkAction
 
 //Creating a default state to make the reducer redux compliant...???
-const initialState: PotlukkDetailsForm = {title: "Revature Party", location: "Venice Beach", status: "CANCELED" ,description: "Work Hard, Play Hard",
-isPublic: false, time: 123456, tags: ["React", "Misson Complete"]};
+const initialState: PotlukkDetailsForm = {title: "", location: "", status: "" ,description: "",
+isPublic: true, time: 0, tags: []};
 
 //Creating reducer to switch on actions when called upon from user input
 export function createPotlukkReducer(state: PotlukkDetailsForm = initialState, action: EventTrackerAction): PotlukkDetailsForm {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { configureStore, applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { HomePage } from './pages/home-page';
@@ -10,13 +9,14 @@ import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import { HostPotlukk } from './pages/host-potlukk-page';
 
 import { PotlukkDetailsGuestPage } from './pages/potlukk-details-guest-page'
-import { createPotlukkReducer, rootSaga} from './reducers/potlukk-creation-reducer';
+import { createPotlukkReducer} from './reducers/potlukk-creation-reducer';
 
 import { guestPageReducer } from './reducers/guest-page-reducer';
 //import { applyMiddleware } from 'redux';
 import { Provider } from 'react-redux/es/exports';
 import { InviteGuests } from './pages/invitation-page';
 import { rootSaga } from './saga/guest-view';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 
 export const queryClient = new QueryClient();
 
@@ -25,7 +25,7 @@ export const queryClient = new QueryClient();
 const sagaMiddleware = createSagaMiddleware();
 
 // Create a store to use the REDUX reducer, and apply saga middleware
-const allReducers = combineReducers({createPotlukkReducer});
+const allReducers = combineReducers({createPotlukkReducer, guestPageReducer});
 const store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 
 // run saga middleware

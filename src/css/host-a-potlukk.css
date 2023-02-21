@@ -1,0 +1,45 @@
+.hostPotlukkDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+  }
+  
+  /* Style the h1 and the rectangular section beneath it */
+ .hostPotlukkTitle {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hostingForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 1rem;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+  
+  /* Style the left half of the rectangular section */
+  
+  .hostingForm input {
+    margin-bottom: 0.5rem;
+    width: 50%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid black;
+  }
+  
+  .hostingForm button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #dabc3b;
+    color: white;
+    border: none;
+  }

@@ -1,0 +1,82 @@
+/* Center the contents of the entire page vertically */
+.hostViewDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+  }
+  
+  /* Style the h1 and the rectangular section beneath it */
+ .hostViewTitle {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .infoSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 1rem;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 1rem;
+  }
+  
+  /* Style the left half of the rectangular section */
+  .left-half {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+  }
+  
+  .left-half h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .left-half h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .left-half input {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid black;
+  }
+  
+  .left-half button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #dabc3b;
+    color: white;
+    border: none;
+  }
+  
+  /* Style the right half of the rectangular section */
+  .right-half {
+    width: 50%;
+  }
+  
+  .right-half table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .right-half th,
+  .right-half td {
+    border: 1px solid black;
+    padding: 0.5rem;
+  }
+  
+  .right-half th {
+    background-color: #d6b520;
+    color: white;
+  }

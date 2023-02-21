@@ -12,8 +12,9 @@ import { UpdatePotlukkAction } from "../reducers/potlukk-creation-reducer";
 //Type pulled in on const potlukks may not be the correct one
 
 function* upDatePotlukks(action: UpdatePotlukkAction):any{
+    const potlukkID:number = yield select(store => store.PotlukkDetails.potlukkId)
    const updatePotlukk: PotlukkDetailsSwapForm = {
-    potlukkId:  ,
+    potlukkId: potlukkID,
     title: action.payload.title,
     location: action.payload.location,
     status: action.payload.status,

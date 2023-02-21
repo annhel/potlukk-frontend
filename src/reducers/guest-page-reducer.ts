@@ -1,4 +1,4 @@
-import { DishesSwapInput } from "../api/types"
+import { DishesSwapInput, InvitationUpdateInput } from "../api/types"
 
 export type Dish = {
     name: String
@@ -30,17 +30,19 @@ export type SetServingAction = {type: "SET_DISH_SERVES", payload: number}
 export type SetAllergenAction = {type: "SET_ALLERGENS", payload: AllergenInput}
 export type CreateDishAction = {type:"ADD_DISH", payload: DishesSwapInput}
 export type SetDishesAction = {type:"SET_DISHES", payload: Dish[]}
+export type SetStatus = {type:"SET_STATUS", payload: string}
 
 export type AcceptInviteAction = {type: "ACCEPT_INVITE", payload: string}
 export type DeclineInviteAction = {type: "DECLINE_INVITE", payload: string}
 export type MaybeInviteAction = {type: "MAYBE_INVITE", payload: string}
 
-export type RequestAddDishAction = {type:"REQUEST_ADD_DISH", payload: DishesSwapInput}
 //saga action to create dishes
+export type RequestAddDishAction = {type:"REQUEST_ADD_DISH", payload: DishesSwapInput}
+export type RequestSetStatus = {type:"REQUEST_SET_STATUS", payload: InvitationUpdateInput};
 export type RequestPopulateDishes = {type:"REQUEST_POPULATE_DISHES"}
-export type GuestPageActions = SetNameAction| SetDescAction| SetServingAction | 
-                            SetAllergenAction | AcceptInviteAction | DeclineInviteAction | 
-                            MaybeInviteAction | CreateDishAction | RequestPopulateDishes | SetDishesAction | RequestAddDishAction
+
+export type GuestPageActions = SetNameAction| SetDescAction| SetServingAction | SetAllergenAction | AcceptInviteAction | DeclineInviteAction | 
+                            MaybeInviteAction | CreateDishAction | RequestPopulateDishes | SetDishesAction | RequestAddDishAction | SetStatus | RequestSetStatus
 
 //Redux initial state here
 const initialState: GuestPageState = {status:"", dishes:[], dish:{name:"", description:"", serves:0, broughtBy:0, allergens:[]}}
@@ -82,6 +84,9 @@ export function guestPageReducer(state: GuestPageState = initialState, action: G
         case "MAYBE_INVITE":
             nextState.status = action.payload
             return nextState
+        case "SET_STATUS":
+            nextState.status = action.payload
+            return nextState;
         default:
             return nextState
     }

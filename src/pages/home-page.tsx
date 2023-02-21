@@ -53,7 +53,7 @@ export function HomePage(){
                 </thead>
                 <tbody className="homeTbody">
                 {notifData.map(nd=> 
-                    <tr key ={nd.eventId} className="homeTr"><td className="homeTd">{nd.kind}</td><td className="homeTd">{nd.affectedPotlukkId}</td><td></td></tr>
+                    <tr key ={nd.eventId} className="homeTr"><td className="homeTd">{nd.kind}</td><td className="homeTd">{nd.affectedPotlukkId}</td></tr>
                     )}
                 </tbody>
             </table>

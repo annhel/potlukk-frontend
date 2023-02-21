@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "../css/invitation.css"
 import { useQuery } from "react-query"
 import { useNavigate, useParams } from "react-router"
 import { createInviteMutation, getLukkers, getPotlukkGuestsByID } from "../api/invitation-requests"
@@ -21,13 +22,14 @@ export function InviteGuests(){
     }
 
     return<>
-    <h1>It's Potlukkin' time at {potlukkGuests?.details.title}</h1>
+    <div className="inviteDiv">
+    <h1>It's Potlukkin' time at _____{potlukkGuests?.details.title}</h1>
     <h2>Invite some friends:</h2>
     <input type="text" placeholder="Search Lukker..." onChange={e => setSearchedUser(e.target.value)}></input>
 
     <table>
         <thead>
-            <tr><th colSpan={3}>Lukkers</th></tr>
+            <tr><th>@handle</th><th colSpan={2}>Lukkers</th></tr>
         </thead>
         <tbody>
             {lukkersData.filter(ld => ld.username.includes(searchedUser)).map(l=> 
@@ -49,5 +51,6 @@ export function InviteGuests(){
 
     <button onClick={handleHome}>Continue</button>
     <button onClick={handleHome}>Skip for now</button>
+    </div>
     </>
 }

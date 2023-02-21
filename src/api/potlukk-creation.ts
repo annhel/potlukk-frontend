@@ -37,5 +37,4 @@ export async function potlukkCreated(potlukkScheduled: PotlukkCreationInput): Pr
     const responseBody = await httpResponse.json();
     const createPotlukk: PotlukkReturn = responseBody.data;
     return createPotlukk;
-    console.log(createPotlukk);
 }
